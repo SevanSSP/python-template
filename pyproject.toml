@@ -20,9 +20,7 @@ name = "sevan-internal-package-index"
 url = "https://api.repoforge.io/EYvhW6SyL/"
 
 [tool.pytest.ini_options]
-pythonpath = [
-  "src"
-]
+pythonpath = ["src"]
 
 [tool.ruff]
 src = ["src"]

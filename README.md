@@ -93,3 +93,10 @@ It will now automatically run on the files changed when trying to commit. To run
 ```console
 uv run pre-commit run --all-files
 ```
+
+### Project structure in Pycharm
+To get the correct project structure in Pycharm (and get correct import resolution in IDE), you need to set the source root for the `src` folder.
+
+1. Right-click on the `src` folder in the project view.
+2. Select "Mark Directory as" from the context menu.
+3. Choose "Sources Root" from the submenu.
