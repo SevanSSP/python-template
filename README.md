@@ -9,13 +9,13 @@ A template repository for python projects in Sevan DWT.
 [UV](https://docs.astral.sh/uv/) is a Python package and project manager, which handles Python versions and virtual environments for you.
 To install uv, type the following in the PowerShell terminal:
 
-```powershell
+```console
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 This will download and install uv to:
 
-```powershell
+```console
 C:\Users\<your-username>\.local\bin
 ```
 
@@ -23,13 +23,13 @@ You should receive a message that uv has been installed.
 To use uv from the terminal window, you need to add it to your system's PATH.
 Write the following in the PowerShell terminal:
 
-```powershell
+```console
 $env:Path = "C:\Users\<your-username>\.local\bin;$env:Path"
 ```
 
 After installing uv, you can check that uv is available by running the `uv` command:
 
-```powershell
+```console
 uv
 ```
 
@@ -41,14 +41,14 @@ You should see a help menu listing the available commands.
 To get access to the internal packages, you need to set up your credentials towards Repoforge.
 This is done by running the `setup_credentials.ps1` script from the terminal window:
 
-```powershell
+```console
 .\setup_credentials.ps1
 ```
 
 You might be prompted to enter your Repoforge token. If that happens, request a token from EBG/SLF.
 Enter your token when prompted. The credentials should now be saved to:
 
-```powershell
+```console
 C:\Users\<your-username>\_netrc
 ```
 
@@ -59,7 +59,7 @@ Your setup should now be complete.
 
 To test your setup, you can try to run one of your scripts:
 
-```powershell
+```console
 uv run .\src\main.py
 ```
 
@@ -69,7 +69,7 @@ uv run .\src\main.py
 
 To add a new package, you can use the `uv add` command. For example, to add the `numpy` package, you can run:
 
-```powershell
+```console
 uv add numpy
 ```
 
@@ -77,7 +77,7 @@ uv add numpy
 
 To run the tests for the projec:
 
-```powershell
+```console
 uv run pytest
 ```
 
