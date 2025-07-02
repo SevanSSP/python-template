@@ -1,0 +1,50 @@
+name: Tests
+
+on:
+  # Workflow dispatch is used for manual triggers
+  workflow_dispatch:
+  # Workflow call is used for called from another workflow
+  workflow_call:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  UV_INDEX_REPOFORGE_USERNAME: ${{ secrets.PACKAGR_USERNAME }}
+  UV_INDEX_REPOFORGE_PASSWORD: ${{ secrets.PACKAGR_PASSWORD }}
+
+jobs:
+
+  pre-commit: # Static analyzers, formatters and verifying pre-commit hooks has been run
+    name: Build & Run Pre Commit hooks to verify code structure, quality etc. from pre-commit hooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Setup: checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "Setup: add python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: "Run: pre-commit"
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files
+
+  test:
+
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Run tests with pytest
+        run: uv run pytest

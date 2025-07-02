@@ -1,0 +1,30 @@
+version: 2
+registries:
+  sevan-packagr:
+    type: python-index
+    url: https://api.repoforge.io/EYvhW6SyL
+    username: ${{secrets.PACKAGR_USERNAME}}
+    password: ${{secrets.PACKAGR_PASSWORD}}
+updates:
+  - package-ecosystem: "uv"
+    directory: "/"
+    insecure-external-code-execution: allow
+    registries:
+      - sevan-packagr
+    schedule:
+      interval: "monthly"
+    groups:
+      main-deps:
+        patterns:
+          - "patch"
+          - "minor"
+    versioning-strategy: increase-if-necessary
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      actions-deps:
+        patterns:
+          - "*"

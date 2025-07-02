@@ -1,0 +1,44 @@
+[project]
+name = "python-template" # Change this to your package name
+version = "0.1.0"
+description = "<Add your description here>"
+readme = "README.md"
+requires-python = ">=3.10, <4"
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "pytest (>=8.3.3, <9)",
+    "pre-commit (>=4.0.1, <5)",
+    "pytest-cov (>=6.0.0, <7)",
+]
+
+[[tool.uv.index]]
+name = "sevan-internal-package-index"
+url = "https://api.repoforge.io/EYvhW6SyL/"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+
+[tool.ruff]
+src = ["src"]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "S",  # flake8-bandit
+  "C",  # flake8-comprehensions
+  "B",  # flake8-bugbear
+  "UP", # automatically upgrade syntax for newer versions of the language
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]

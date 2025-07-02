@@ -1,2 +1,95 @@
 # python-template
-A template repository for 
+A template repository for python projects in Sevan DWT.
+
+## Setup environment with uv
+
+> [!IMPORTANT]
+> You only need to follow the steps in this section if you are setting up an uv environment for the first time. If you already have an uv and credentials to sevan internal packages, you can skip to [Run a script](#run-a-script).
+
+[UV](https://docs.astral.sh/uv/) is a Python package and project manager, which handles Python versions and virtual environments for you.
+To install uv, type the following in the PowerShell terminal:
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+This will download and install uv to:
+
+```powershell
+C:\Users\<your-username>\.local\bin
+```
+
+You should receive a message that uv has been installed.
+To use uv from the terminal window, you need to add it to your system's PATH.
+Write the following in the PowerShell terminal:
+
+```powershell
+$env:Path = "C:\Users\<your-username>\.local\bin;$env:Path"
+```
+
+After installing uv, you can check that uv is available by running the `uv` command:
+
+```powershell
+uv
+```
+
+You should see a help menu listing the available commands.
+
+
+#### Configure credentials for internal packages
+
+To get access to the internal packages, you need to set up your credentials towards Repoforge.
+This is done by running the `setup_credentials.ps1` script from the terminal window:
+
+```powershell
+.\setup_credentials.ps1
+```
+
+You might be prompted to enter your Repoforge token. If that happens, request a token from EBG/SLF.
+Enter your token when prompted. The credentials should now be saved to:
+
+```powershell
+C:\Users\<your-username>\_netrc
+```
+
+Your setup should now be complete.
+
+
+## Run a script
+
+To test your setup, you can try to run one of your scripts:
+
+```powershell
+uv run .\src\main.py
+```
+
+## Develop your own scripts
+
+### Add a new package
+
+To add a new package, you can use the `uv add` command. For example, to add the `numpy` package, you can run:
+
+```powershell
+uv add numpy
+```
+
+### Running the tests
+
+To run the tests for the projec:
+
+```powershell
+uv run pytest
+```
+
+### Linting and formatting
+
+Pre-commit is used to format and lint the code-base before a commit is done. To install git-hooks:
+
+```console
+uv run pre-commit install
+```
+It will now automatically run on the files changed when trying to commit. To run on all files:
+
+```console
+uv run pre-commit run --all-files
+```
